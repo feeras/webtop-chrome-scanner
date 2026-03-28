@@ -1,0 +1,46 @@
+services:
+  # Dein bestehender Webtop-Service (Ubuntu mit XFCE)
+  webtop:
+    image: lscr.io/linuxserver/webtop:ubuntu-xfce
+    container_name: webtop
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Berlin
+      - KASMVNC_OPTS=--interface 0.0.0.0 --port 3001 --ssl --allow-sharing
+    volumes:
+      - /home/feeras/.chrome-webtop:/config
+    ports:
+      - "3300:3000"  # HTTP Zugriff (lokal)
+      - "3301:3001"  # HTTPS Zugriff (für den Scanner & dich)
+    shm_size: "1gb"
+    restart: unless-stopped
+    networks:
+      - monitor-network
+
+  # Der optimierte OCR-Scanner
+  webtop-scanner:
+    build: .
+    container_name: webtop_ocr_scanner
+    depends_on:
+      - webtop
+    environment:
+      # Die interne Docker-URL mit HTTPS und Port 3001
+      - WEBTOP_URL=https://webtop:3001
+
+      # Deine Telegram Zugangsdaten
+      - TELEGRAM_TOKEN=${telegram_token}
+      - CHAT_ID=${chat_id}
+
+      # HIER DIE KEYWORDS ANPASSEN (Kommagetrennt, keine Leerzeichen nach Komma)
+      - KEYWORDS=${keywords}
+
+    volumes:
+      - ./data:/app/data
+    restart: always
+    networks:
+      - monitor-network
+
+networks:
+  monitor-network:
+    driver: bridge

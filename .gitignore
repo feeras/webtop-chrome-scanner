@@ -1,0 +1,7 @@
+# Lokale Daten & Screenshots
+data/
+node_modules/
+/.idea/
+
+# OS spezifische Dateien
+.DS_Store
