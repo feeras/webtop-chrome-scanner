@@ -1,5 +1,6 @@
 # Lokale Daten & Screenshots
-data/
+data/*
+!data/.gitkeep
 node_modules/
 /.idea/
 
