@@ -23,7 +23,7 @@ async function sendTelegram(msg) {
 }
 
 async function start() {
-    console.log(`🚀 Scanner aktiv. Intervall: 20s. Bereich: Obere 25%.`);
+    console.log(`🚀 Scanner aktiv. Intervall: 20s. Bereich: Obere 50%.`);
     console.log(`🔍 Überwache Keywords: ${KEYWORDS.join(', ')}`);
 
     const browser = await chromium.launch({headless: true});
@@ -40,7 +40,7 @@ async function start() {
 
         setInterval(async () => {
             try {
-                // Screenshot der oberen 25% (Adressleiste & Tabs)
+                // Screenshot der oberen 50% (Adressleiste & Tabs)
                 await page.screenshot({
                     path: 'data/raw.png',
                     clip: {x: 0, y: 0, width: 1920, height: 540}
