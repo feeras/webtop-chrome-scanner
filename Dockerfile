@@ -1,3 +1,4 @@
+# Force Rebuild 2026-03-28
 FROM mcr.microsoft.com/playwright:v1.58.2-jammy
 
 # Hinzugefügt: tesseract-ocr-deu für bessere Erkennung
