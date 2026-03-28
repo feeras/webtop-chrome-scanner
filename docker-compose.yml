@@ -34,12 +34,16 @@ services:
 
       # HIER DIE KEYWORDS ANPASSEN (Kommagetrennt, keine Leerzeichen nach Komma)
       - KEYWORDS=${keywords}
-
     volumes:
       - ./data:/app/data
+    ports:
+      - "3302:3002"
     restart: always
     networks:
       - monitor-network
+    # WICHTIG: Wir müssen CMD überschreiben, um beide Prozesse zu starten
+    command: >
+      sh -c "node gallery.js & node scanner.js"
 
 networks:
   monitor-network:
