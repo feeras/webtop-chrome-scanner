@@ -103,7 +103,7 @@ async function start() {
                 const hitFile = `data/hit_${matchedKeyword}_${getTimestamp()}.png`;
                 fs.copyFileSync('data/processed.png', hitFile);
                 console.log(`🎯 Treffer: ${matchedKeyword} -> ${hitFile}`);
-                sendTelegram(`🎯 Treffer! Keyword: ${matchedKeyword}\nBeweis: ${hitFile}`);
+                sendTelegram(`🎯 Treffer!`);
 
                 await recordingPhase(page, matchedKeyword);
                 // After recording, immediately scan again (no extra sleep)
