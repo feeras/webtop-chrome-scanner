@@ -1,4 +1,5 @@
-# Force Rebuild 2026-03-28 Part2
+# Keep the playwright version in package.json identical to this image tag,
+# otherwise the browsers bundled in the image won't match the npm package.
 FROM mcr.microsoft.com/playwright:v1.58.2-jammy
 
 # Hinzugefügt: tesseract-ocr-deu für bessere Erkennung
