@@ -38,7 +38,7 @@ services:
       - ./data:/app/data
     ports:
       - "3302:3002"
-    restart: always
+    restart: unless-stopped
     networks:
       - monitor-network
     # WICHTIG: Wir müssen CMD überschreiben, um beide Prozesse zu starten
